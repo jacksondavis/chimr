@@ -4,7 +4,8 @@ body {
 
 .navbar-default {
   background-color: #550000;
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Lato', sans-serif;
+  border-color: #550000;
 }
 
 .navbar-default .navbar-brand {
