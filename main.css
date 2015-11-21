@@ -1,0 +1,12 @@
+.navbar-default {
+  background-color: rgba(0, 0, 0, 0.75);
+  font-family: 'Raleway', sans-serif;
+}
+
+.navbar-default .navbar-brand {
+  color: white;
+}
+
+.navbar-default  .navbar-nav li a {
+  color: white;
+}
