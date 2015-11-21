@@ -12,9 +12,15 @@ AUTH_TOKEN = TWILIO_AUTH
  
 client = TwilioRestClient(ACCOUNT_SID, AUTH_TOKEN) 
 
-def sendAlert(): 
+#"+16304701481"
+#"+16305280456"
+#"Someone entered!"
+
+def sendAlert(_to, _from, _body): 
 	client.messages.create(
-	    to="+16304701481", 
-	    from_="+16305280456", 
-	    body="Someone entered!",  
+	    to=_to, 
+	    from_=_from, 
+	    body=_body,  
 	)
+
+sendAlert("+16304701481", "+16305280456", "Someone entered!")
