@@ -1,6 +1,7 @@
 from twilio.rest import TwilioRestClient 
 from secrets import TWILIO_SID
 from secrets import TWILIO_AUTH
+import serial
 
 listNums = []
 
@@ -23,4 +24,18 @@ def sendAlert(_to, _from, _body):
 	    body=_body,  
 	)
 
-sendAlert("+16304701481", "+16305280456", "Someone entered!")
+connected = False
+
+ser = serial.Serial('/dev/cu.usbmodem1421', 9600)
+
+while not connected:
+    serin = ser.read()
+    connected = True
+
+ser.write("1")
+
+while ser.read() == '1':
+    ser.read()
+sendAlert("+16307476759", "+16305280456", "Ding Dong")
+ser.close()
+print "closed"
