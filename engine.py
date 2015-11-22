@@ -36,6 +36,9 @@ ser.write("1")
 
 while ser.read() == '1':
     ser.read()
-sendAlert("+16307476759", "+16305280456", "Ding Dong")
+#sendAlert("+16307476759", "+16305280456", "Ding Dong")
+print "ding dong"
+x = raw_input("press any key + enter to confirm you are going to the door:\n")
+ser.write("0")
 ser.close()
 print "closed"
