@@ -17,8 +17,6 @@ String message = "";   // for incoming serial data
 
 void setup() {
   Serial.begin(115200);
-  Serial.write('1');
-
   lcd.begin(16, 1);
   lcd.setRGB(colorR, colorG, colorB);
   lcd.print("Hello");
@@ -32,8 +30,7 @@ void setup() {
 void loop() {
   String str;
   buttonState = digitalRead(buttonPin);
-  bool rang = false;
-  if (buttonState == HIGH & !rang) {
+  if (buttonState == HIGH) {
     tone(buzzer, 440, 750);
     delay(400);
     tone(buzzer, 349, 500);
