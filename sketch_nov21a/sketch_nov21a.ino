@@ -22,8 +22,7 @@ void setup() {
 void loop() {
   String str;
   buttonState = digitalRead(buttonPin);
-  bool rang = false;
-  if (buttonState == HIGH & !rang) {
+  if (buttonState == HIGH) {
     Serial.write('0');
     lcd.clear();
     lcd.setRGB(255, 255, 0);
