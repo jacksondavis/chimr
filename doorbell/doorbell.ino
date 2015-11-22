@@ -4,6 +4,8 @@
 
 const int buttonPin = 2;
 const int buzzer = 8;
+const int blueLED = 3;
+const int redLED = 7;
 
 int buttonState = 0;
 
@@ -23,6 +25,8 @@ void setup() {
 
   pinMode(buttonPin, INPUT);
   pinMode(buzzer, OUTPUT);
+  pinMode(blueLED, OUTPUT);
+  pinMode(redLED, OUTPUT);
 
   Serial.write('1');
 }
@@ -31,9 +35,14 @@ void loop() {
   String str;
   buttonState = digitalRead(buttonPin);
   if (buttonState == HIGH) {
+    digitalWrite(blueLED, 1);
     tone(buzzer, 440, 750);
     delay(400);
+    digitalWrite(blueLED, 0);
+    digitalWrite(redLED, 1);
     tone(buzzer, 349, 500);
+    delay(400);
+    digitalWrite(redLED, 0);
 
     Serial.write('0');
     lcd.clear();
