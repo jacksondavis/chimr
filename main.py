@@ -1,4 +1,4 @@
-from flask import Flask, flash, jsonify, render_template, redirect
+from flask import Flask, flash, jsonify, render_template, redirect, request
 from flask_bootstrap import Bootstrap
 import engine
 from engine import client
@@ -21,6 +21,11 @@ def getText():
 @app.route('/test')
 def testSend():
     engine.sendAlert()
+    return render_template('index.html')
+
+@app.route("/addNum", methods=['GET', 'POST'])
+def addNum():
+    engine.addNumber(request.data.num)
     return render_template('index.html')
 
 if __name__ == "__main__":

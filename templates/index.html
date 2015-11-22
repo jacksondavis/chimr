@@ -36,6 +36,8 @@
     </div>
   </nav>
 
+  <!-- content -->
+  <div data-ng-controller="mainController">
   <section id="nums">
   <div class="container">
     <div class="row">
@@ -45,10 +47,10 @@
                 <div class="form-group">
                     <label for="text">Enter Phone Number</label>
                     <div class="input-group">
-                        <input type="text" class="form-control" name="InputNum" id="InputNum" placeholder="+16509337888" required>
+                        <input type="text" class="form-control" name="InputNum" id="InputNum" placeholder="+16509337888" ng-model="number" required>
 
                         <span class="input-group-addon" id="submitArea">
-                            <input type="submit" name="submit" id="submit" value="Submit" class="btn">
+                            <input type="submit" name="submit" id="submit" value="Submit" class="btn" ng-click="addNum">
                         </span>
                     </div>
                 </div>
@@ -57,10 +59,14 @@
     </div>
 </div>
 </section>
+</div>
+
 
 <!-- JQuery and Bootstrap JS Imports -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="/static/scripts/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.2/angular.min.js"></script>
+<script src="/static/scripts/app.js"></script>
 
 <!-- JQuery Script to Enable Smooth Scrolling -->
 <!-- Found on http://www.cmscanbesimple.org/blog/smooth-page-scroll-to-an-anchor -->
