@@ -18,24 +18,10 @@ def sendAlert(_to, _from, _body):
         body=_body,
     )
 
-def sendText():
+ser = serial.Serial('/dev/cu.usbmodem1421', 115200)
 
-    ser = serial.Serial('/dev/cu.usbmodem1421', 115200)
+while ser.read() == '1':
+    ser.read()
 
-    while ser.read() == '1':
-        ser.read()
-
-    print "ding dong"
-    ser.flushInput()
-    x = raw_input("press any key + enter to confirm you are going to the door:\n")
-    ser.write(x)
-    #ser.close()
-
-	while ser.read() == '1':
-   		ser.read()
-	
-	sendAlert("+16307476759", "+16305280456", "Ding Dong")
-
-	ser.close()
-	return "done"
-
+print "ding dong"
+ser.close()

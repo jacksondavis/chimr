@@ -23,10 +23,15 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
-@app.route("/message", methods=['GET', 'POST'])
+@app.route("/", methods=['GET', 'POST'])
 def getText():
-	engine.sendText()
-	return render_template('index.html')
+    print "da fuq"
+    #x = request.form.get('Body')
+    x = raw_input("fuck bitches")
+    ser = serial.Serial('/dev/cu.usbmodem1421', 115200)
+    ser.write(x)
+    ser.close()
+    return render_template('index.html')
 
 @app.route("/test", methods=['GET', 'POST'])
 def test():
@@ -38,4 +43,4 @@ def test():
 	return str(resp)
 
 if __name__ == "__main__":
-	app.run(debug=True)
+	app.run()
