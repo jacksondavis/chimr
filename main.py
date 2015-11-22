@@ -8,6 +8,7 @@ from twilio.rest import TwilioRestClient
 
 from secrets import TWILIO_SID
 from secrets import TWILIO_AUTH
+from secrets import SERIAL_PORT
 
 ACCOUNT_SID = TWILIO_SID 
 AUTH_TOKEN = TWILIO_AUTH
@@ -16,7 +17,7 @@ client = TwilioRestClient(ACCOUNT_SID, AUTH_TOKEN)
 
 app = Flask(__name__)
 
-ser = serial.Serial('/dev/cu.usbmodem1421', 115200)
+ser = serial.Serial(SERIAL_PORT, 115200)
 
 # Home Page
 @app.route('/', methods=['GET', 'POST'])
