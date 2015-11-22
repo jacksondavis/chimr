@@ -3,8 +3,6 @@ from secrets import TWILIO_SID
 from secrets import TWILIO_AUTH
 import serial
 
-listNums = []
-
 def addNumber(num):
     listNums.append(num)
  
@@ -12,10 +10,6 @@ ACCOUNT_SID = TWILIO_SID
 AUTH_TOKEN = TWILIO_AUTH
  
 client = TwilioRestClient(ACCOUNT_SID, AUTH_TOKEN) 
-
-#"+16304701481"
-#"+16305280456"
-#"Someone entered!"
 
 def sendAlert(_to, _from, _body):
     client.messages.create(
@@ -37,4 +31,11 @@ def sendText():
     ser.write(x)
     #ser.close()
 
-sendText()
+	while ser.read() == '1':
+   		ser.read()
+	
+	sendAlert("+16307476759", "+16305280456", "Ding Dong")
+
+	ser.close()
+	return "done"
+
