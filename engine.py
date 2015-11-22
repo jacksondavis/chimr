@@ -3,6 +3,8 @@ from secrets import TWILIO_SID
 from secrets import TWILIO_AUTH
 import serial
 
+btnPressed = False
+
 def addNumber(num):
     listNums.append(num)
  
@@ -18,10 +20,8 @@ def sendAlert(_to, _from, _body):
         body=_body,
     )
 
-ser = serial.Serial('/dev/cu.usbmodem1421', 115200)
-
-while ser.read() == '1':
-    ser.read()
-
-print "ding dong"
-ser.close()
+def buttonCheck(ser):
+    while ser.read() == '1':
+        ser.read()
+    sendAlert("+16307476759", "+16305280456", "Ding Dong")
+    print "ding dong"
