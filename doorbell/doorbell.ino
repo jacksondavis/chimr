@@ -1,5 +1,4 @@
 #include <rgb_lcd.h>
-
 #include <Wire.h>
 
 const int buttonPin = 2;
@@ -34,9 +33,9 @@ void loop() {
   buttonState = digitalRead(buttonPin);
   bool rang = false;
   if (buttonState == HIGH & !rang) {
-    tone(buzzer, 440, 750);
-    delay(400);
-    tone(buzzer, 349, 500);
+    tone(buzzer, 440, 750);               // DING!
+    delay(400);                           // delay for 400 milliseconds
+    tone(buzzer, 349, 500);               // DONG!
 
     Serial.write('0');
     lcd.clear();
@@ -46,8 +45,7 @@ void loop() {
 
     while (Serial.available() < 0) {}
     
-    while (str == "")
-    {
+    while (str == "") {
       str = Serial.readString();
     }
     
@@ -56,5 +54,3 @@ void loop() {
     lcd.print(str);
   }
 }
-
-
