@@ -1,9 +1,8 @@
 from twilio.rest import TwilioRestClient 
 from secrets import TWILIO_SID
 from secrets import TWILIO_AUTH
+from secrets import PHONE_NUMBER
 import serial
-
-CURR_NUM = "+16307476759"
  
 ACCOUNT_SID = TWILIO_SID 
 AUTH_TOKEN = TWILIO_AUTH
@@ -21,6 +20,6 @@ def buttonCheck(ser):
     while ser.read() == '1':
         ser.read()
 
-    sendAlert(CURR_NUM, "+16305280456", "Ding Dong")
+    sendAlert(PHONE_NUMBER, "+16305280456", "Ding Dong")
     print "ding dong"
 
