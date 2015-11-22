@@ -3,6 +3,7 @@
 #include <Wire.h>
 
 const int buttonPin = 2;
+const int buzzer = 8;
 
 int buttonState = 0;
 
@@ -23,6 +24,8 @@ void setup() {
   lcd.print("Hello");
 
   pinMode(buttonPin, INPUT);
+  pinMode(buzzer, OUTPUT);
+  
   Serial.write('1');
 }
 
@@ -31,17 +34,24 @@ void loop() {
   buttonState = digitalRead(buttonPin);
   bool rang = false;
   if (buttonState == HIGH & !rang) {
+    tone(buzzer, 440, 750);
+    delay(400);
+    tone(buzzer, 349, 500);
+
     Serial.write('0');
     lcd.clear();
     lcd.print("waiting for message");
-    while (Serial.available() < 0)
-    {
-    }
+    
+    while (Serial.available() < 0) {}
+    
     while (str == "")
     {
       str = Serial.readString();
     }
+    
     lcd.clear();
     lcd.print(str);
   }
 }
+
+
