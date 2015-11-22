@@ -41,7 +41,7 @@ void loop() {
     Serial.write('0');
     lcd.clear();
     lcd.setRGB(255, 255, 0);
-    lcd.print("please wait");
+    lcd.print("Please wait");
     delay(100);
 
     while (Serial.available() < 0) {}
@@ -53,7 +53,21 @@ void loop() {
     
     lcd.clear();
     lcd.setRGB(0, 255, 0);
+    
     lcd.print(str);
+
+    delay(1000);
+
+
+    if(str.length() > 16) {
+      for (int positionCounter = 0; positionCounter < 13; positionCounter++) {
+          lcd.scrollDisplayLeft();
+          delay(400);
+      }
+
+    lcd.clear();
+    lcd.print(str);
+    }
   }
 }
 
