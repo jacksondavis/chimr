@@ -25,7 +25,7 @@ void setup() {
 
   pinMode(buttonPin, INPUT);
   pinMode(buzzer, OUTPUT);
-  
+
   Serial.write('1');
 }
 
@@ -45,31 +45,27 @@ void loop() {
     delay(100);
 
     while (Serial.available() < 0) {}
-    
+
     while (str == "")
     {
       str = Serial.readString();
     }
-    
+
     lcd.clear();
     lcd.setRGB(0, 255, 0);
-    
     lcd.print(str);
 
     delay(1000);
 
-
-    if(str.length() > 16) {
+    if (str.length() > 16) {
       for (int positionCounter = 0; positionCounter < str.length() - 16; positionCounter++) {
-          lcd.scrollDisplayLeft();
-          delay(400);
+        lcd.scrollDisplayLeft();
+        delay(400);
       }
 
-    delay(800);
-    lcd.clear();
-    lcd.print(str);
+      delay(800);
+      lcd.clear();
+      lcd.print(str);
     }
   }
 }
-
-
