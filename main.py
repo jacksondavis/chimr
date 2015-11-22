@@ -3,6 +3,7 @@ from flask_bootstrap import Bootstrap
 import engine
 from engine import client
 import twilio.twiml
+import serial
 
 
 from secrets import TWILIO_SID
@@ -17,25 +18,78 @@ client = TwilioRestClient(ACCOUNT_SID, AUTH_TOKEN)
 
 app = Flask(__name__)
 
-# Home Page
-@app.route('/home')
-@app.route('/')
-def index():
-    return render_template('index.html')
+ser = serial.Serial('/dev/cu.usbmodem1421', 115200)
 
-@app.route("/message", methods=['GET', 'POST'])
-def getText():
-	engine.sendText()
-	return render_template('index.html')
+# Home Page
+@app.route('/', methods=['GET', 'POST'])
+def index():
+	text = request.form.get('Body')
+	if text is None:
+		print(text)
+		return render_template('index.html')
+
+	else:
+		print type(text)
+		print type(str(text))
+	  	ser.flushInput()
+	  	print str(text)
+	  	ser.write(str(text))
+	  	return render_template('index.html')
+
+#@app.route("/message", methods=['GET', 'POST'])
+#def getText():
+#	ser = serial.Serial('/dev/cu.usbmodem1421', 115200)
+#	while ser.read() == '1':
+#		ser.read()
+#
+#	print "ding dong"
+#	text = request.form.get('Body')
+#	while text == None:
+#		text = request.form.get('Body')
+#
+#	print(text)
+#	resp = twilio.twiml.Response()
+#	resp.message("Hello, Mobile Monkey")
+#	ser.write(text)
+#	while ser.read() == '1':
+#		ser.read()
+#
+#	sendAlert("+16307476759", "+16305280456", "Ding Dong")
+#	ser.close()
+#	return render_template('index.html')
 
 @app.route("/test", methods=['GET', 'POST'])
 def test():
-	for i in range(0, 10):
-		print i
-	print(request.form.get('Body'))
 	resp = twilio.twiml.Response()
 	resp.message("Hello, Mobile Monkey")
-	return str(resp)
+	text = request.form.get('Body')
+
+	print(str(text))
+	print type(text)
+	return 'hi'
+
+#@app.route("/print", methods=['GET', 'POST'])
+#def printThis():
+#	ser = serial.Serial('/dev/cu.usbmodem1421', 115200)
+#	while ser.read() == '1':
+#		ser.read()
+#
+#	print "ding dong"
+#	text = request.form.get('Body')
+#
+#	if text is None:
+#		return
+#
+#	print(text)
+#	resp = twilio.twiml.Response()
+#	resp.message("Hello, Mobile Monkey")
+#	ser.write(text)
+#	while ser.read() == '1':
+#		ser.read()
+#
+#	ser.close()
+#	return render_template('index.html')
 
 if __name__ == "__main__":
-	app.run(debug=True)
+	engine.buttonCheck(ser)
+	app.run()
