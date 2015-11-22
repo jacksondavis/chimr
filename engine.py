@@ -37,11 +37,11 @@ def sendText():
 
 	while ser.read() == '1':
    		ser.read()
-	sendAlert("+16307476759", "+16305280456", "Ding Dong")
-	ser.close()
+	#sendAlert("+16307476759", "+16305280456", "Ding Dong")
+	#ser.close()
 
 	print "ding dong"
 	x = raw_input("press any key + enter to confirm you are going to the door:\n")
 	ser.write("0")
-	ser.close()
-	print "closed"
+
+sendText()

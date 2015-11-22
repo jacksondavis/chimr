@@ -13,6 +13,7 @@ const int colorR = 255;
 const int colorG = 0;
 const int colorB = 0;
 
+String message = "";   // for incoming serial data
 
 void setup() {
   lcd.begin(16, 2);
@@ -38,10 +39,11 @@ void loop() {
   } else {
     Serial.write('1');
   }
-  if (rang & Serial.read() == 0)
+  if (rang & Serial.available() > 0)
   {
+      message = Serial.read();
       lcd.clear();
-      lcd.print("Coming to door");
+      lcd.print(message);
       rang = false;
   }
 }
