@@ -4,12 +4,10 @@ import engine
 from engine import client
 import twilio.twiml
 import serial
-
+from twilio.rest import TwilioRestClient 
 
 from secrets import TWILIO_SID
 from secrets import TWILIO_AUTH
-
-from twilio.rest import TwilioRestClient 
 
 ACCOUNT_SID = TWILIO_SID 
 AUTH_TOKEN = TWILIO_AUTH
@@ -36,28 +34,6 @@ def index():
 	  	ser.write(str(text))
 	  	return render_template('index.html')
 
-#@app.route("/message", methods=['GET', 'POST'])
-#def getText():
-#	ser = serial.Serial('/dev/cu.usbmodem1421', 115200)
-#	while ser.read() == '1':
-#		ser.read()
-#
-#	print "ding dong"
-#	text = request.form.get('Body')
-#	while text == None:
-#		text = request.form.get('Body')
-#
-#	print(text)
-#	resp = twilio.twiml.Response()
-#	resp.message("Hello, Mobile Monkey")
-#	ser.write(text)
-#	while ser.read() == '1':
-#		ser.read()
-#
-#	sendAlert("+16307476759", "+16305280456", "Ding Dong")
-#	ser.close()
-#	return render_template('index.html')
-
 @app.route("/test", methods=['GET', 'POST'])
 def test():
 	resp = twilio.twiml.Response()
@@ -67,28 +43,6 @@ def test():
 	print(str(text))
 	print type(text)
 	return 'hi'
-
-#@app.route("/print", methods=['GET', 'POST'])
-#def printThis():
-#	ser = serial.Serial('/dev/cu.usbmodem1421', 115200)
-#	while ser.read() == '1':
-#		ser.read()
-#
-#	print "ding dong"
-#	text = request.form.get('Body')
-#
-#	if text is None:
-#		return
-#
-#	print(text)
-#	resp = twilio.twiml.Response()
-#	resp.message("Hello, Mobile Monkey")
-#	ser.write(text)
-#	while ser.read() == '1':
-#		ser.read()
-#
-#	ser.close()
-#	return render_template('index.html')
 
 if __name__ == "__main__":
 	engine.buttonCheck(ser)

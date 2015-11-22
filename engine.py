@@ -23,5 +23,7 @@ def sendAlert(_to, _from, _body):
 def buttonCheck(ser):
     while ser.read() == '1':
         ser.read()
+        
     sendAlert("+16509337888", "+16305280456", "Ding Dong")
     print "ding dong"
+

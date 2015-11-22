@@ -17,23 +17,20 @@ String message = "";   // for incoming serial data
 
 void setup() {
   Serial.begin(115200);
-  Serial.write('1');
-
   lcd.begin(16, 1);
   lcd.setRGB(colorR, colorG, colorB);
   lcd.print("Hello");
 
   pinMode(buttonPin, INPUT);
   pinMode(buzzer, OUTPUT);
-  
+
   Serial.write('1');
 }
 
 void loop() {
   String str;
   buttonState = digitalRead(buttonPin);
-  bool rang = false;
-  if (buttonState == HIGH & !rang) {
+  if (buttonState == HIGH) {
     tone(buzzer, 440, 750);
     delay(400);
     tone(buzzer, 349, 500);
@@ -45,26 +42,25 @@ void loop() {
     delay(100);
 
     while (Serial.available() < 0) {}
-    
+
     while (str == "")
     {
       str = Serial.readString();
     }
-    
+
     lcd.clear();
     lcd.setRGB(0, 255, 0);
-    
     lcd.print(str);
 
     delay(1000);
 
-
-    if(str.length() > 16) {
+    if (str.length() > 16) {
       for (int positionCounter = 0; positionCounter < str.length() - 16; positionCounter++) {
-          lcd.scrollDisplayLeft();
-          delay(400);
+        lcd.scrollDisplayLeft();
+        delay(400);
       }
 
+<<<<<<< HEAD
     delay(1000);
     lcd.clear();
     lcd.print(str);
@@ -81,8 +77,11 @@ void loop() {
     delay(1000);
     lcd.clear();
     lcd.print(str);
+=======
+      delay(800);
+      lcd.clear();
+      lcd.print(str);
+>>>>>>> 47e0ba84ced15be5c75fd54cd052583a7bf2faef
     }
   }
 }
-
-
