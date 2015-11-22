@@ -1,4 +1,5 @@
 #include <rgb_lcd.h>
+
 #include <Wire.h>
 
 const int buttonPin = 2;
@@ -18,7 +19,7 @@ void setup() {
   Serial.begin(115200);
   Serial.write('1');
 
-  lcd.begin(16, 2);
+  lcd.begin(16, 1);
   lcd.setRGB(colorR, colorG, colorB);
   lcd.print("Hello");
 
@@ -33,9 +34,9 @@ void loop() {
   buttonState = digitalRead(buttonPin);
   bool rang = false;
   if (buttonState == HIGH & !rang) {
-    tone(buzzer, 440, 750);               // DING!
-    delay(400);                           // delay for 400 milliseconds
-    tone(buzzer, 349, 500);               // DONG!
+    tone(buzzer, 440, 750);
+    delay(400);
+    tone(buzzer, 349, 500);
 
     Serial.write('0');
     lcd.clear();
@@ -45,7 +46,8 @@ void loop() {
 
     while (Serial.available() < 0) {}
     
-    while (str == "") {
+    while (str == "")
+    {
       str = Serial.readString();
     }
     
@@ -58,13 +60,16 @@ void loop() {
 
 
     if(str.length() > 16) {
-      for (int positionCounter = 0; positionCounter < 13; positionCounter++) {
+      for (int positionCounter = 0; positionCounter < str.length() - 16; positionCounter++) {
           lcd.scrollDisplayLeft();
           delay(400);
       }
 
+    delay(800);
     lcd.clear();
     lcd.print(str);
     }
   }
 }
+
+
