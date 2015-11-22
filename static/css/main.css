@@ -16,3 +16,17 @@ body {
 .navbar-default  .navbar-nav li a {
   color: white;
 }
+
+#submit{
+  background: inherit;
+  height: inherit;
+  padding-bottom: 0px;
+  padding-top: 0px;
+  margin: 0px;
+}
+
+#submitArea{
+  height: inherit;
+  padding: 0px;
+  margin: 0px;
+}

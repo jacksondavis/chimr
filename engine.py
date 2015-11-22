@@ -17,7 +17,7 @@ client = TwilioRestClient(ACCOUNT_SID, AUTH_TOKEN)
 #"+16305280456"
 #"Someone entered!"
 
-def sendAlert(_to, _from, _body): 
+def sendAlert(_to, _from, _body):
 	client.messages.create(
 	    to=_to, 
 	    from_=_from, 
@@ -30,13 +30,13 @@ def sendText():
 	ser = serial.Serial('/dev/cu.usbmodem1421', 9600)
 
 	while not connected:
-    	serin = ser.read()
-    	connected = True
+		serin = ser.read()
+		connected = True
 
 	ser.write("1")
 
 	while ser.read() == '1':
-    	ser.read()
+		ser.read()
 	sendAlert("+16307476759", "+16305280456", "Ding Dong")
 	ser.close()
 	print "closed"

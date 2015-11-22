@@ -43,35 +43,20 @@
             <div class="col-lg-6">
                 <div class="well well-sm"><strong><span class="glyphicon glyphicon-asterisk"></span>Required Field</strong></div>
                 <div class="form-group">
-                    <label for="text">Enter Number 1</label>
+                    <label for="text">Enter Phone Number</label>
                     <div class="input-group">
-                        <input type="text" class="form-control" name="InputName" id="InputName" placeholder="Enter Name" required>
-                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                        <input type="text" class="form-control" name="InputNum" id="InputNum" placeholder="+16509337888" required>
+
+                        <span class="input-group-addon" id="submitArea">
+                            <input type="submit" name="submit" id="submit" value="Submit" class="btn">
+                        </span>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="InputEmail">Enter Number 2</label>
-                    <div class="input-group">
-                        <input type="email" class="form-control" id="InputEmailFirst" name="text" placeholder="Enter Email" required>
-                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
-                    </div>
-                </div>
-                <input type="submit" name="submit" id="submit" value="Submit" class="btn btn-info pull-right">
             </div>
         </form>
     </div>
 </div>
 </section>
-
-    <!-- Footer -->
-    <div class="footer fixed">
-      <div class="container">
-        <div class="pull-left">
-          <p>Powered by Particle</p>
-        </div>
-        </div>
-      </div>
-    </div>
 
 <!-- JQuery and Bootstrap JS Imports -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -85,6 +70,7 @@
       event.preventDefault();
       $('html,body').animate( { scrollTop:$(this.hash).offset().top } , 1000);
     } );
+
   } );
 </script>
 </body>

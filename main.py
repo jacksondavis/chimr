@@ -13,15 +13,15 @@ def index():
 
 @app.route("/message", methods=['GET', 'POST'])
 def getText():
-	engine.sendText()
+    engine.sendText()
     print(request.form['Body'])
     resp = twilio.twiml.Response()
     return str(resp)
 
 @app.route('/test')
 def testSend():
-	engine.sendAlert()
-	return render_template('index.html')
+    engine.sendAlert()
+    return render_template('index.html')
 
 if __name__ == "__main__":
     app.run()
