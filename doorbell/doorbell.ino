@@ -40,8 +40,10 @@ void loop() {
 
     Serial.write('0');
     lcd.clear();
-    lcd.print("waiting for message");
-    
+    lcd.setRGB(255, 255, 0);
+    lcd.print("please wait");
+    delay(100);
+
     while (Serial.available() < 0) {}
     
     while (str == "")
@@ -50,6 +52,7 @@ void loop() {
     }
     
     lcd.clear();
+    lcd.setRGB(0, 255, 0);
     lcd.print(str);
   }
 }
