@@ -16,7 +16,6 @@ def getText():
 	engine.sendText()
     print(request.form['Body'])
     resp = twilio.twiml.Response()
-    resp.message("Hello, Mobile Monkey")
     return str(resp)
 
 @app.route('/test')
