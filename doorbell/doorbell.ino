@@ -65,7 +65,20 @@ void loop() {
           delay(400);
       }
 
-    delay(800);
+    delay(1000);
+    lcd.clear();
+    lcd.print(str);
+
+    delay(1000);
+    }
+
+        if(str.length() > 16) {
+      for (int positionCounter = 0; positionCounter < str.length() - 16; positionCounter++) {
+          lcd.scrollDisplayLeft();
+          delay(400);
+      }
+
+    delay(1000);
     lcd.clear();
     lcd.print(str);
     }
